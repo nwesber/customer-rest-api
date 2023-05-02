@@ -75,6 +75,17 @@ class Customer {
     }
 
     /**
+     * Set the ID of the customer.
+     *
+     * @param string $id The id of the customer.
+     * @return void
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * Get the customer's firstName.
      *
      * @return string|null

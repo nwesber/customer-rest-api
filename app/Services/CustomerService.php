@@ -7,7 +7,6 @@ use App\DTO\CustomerDTO;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
-use PhpParser\Node\Expr\Cast\Bool_;
 
 /**
  * CustomerService Class

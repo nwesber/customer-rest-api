@@ -12,6 +12,11 @@ class CustomerDTO
 {
 
     /**
+     * @var int The customer's id.
+     */
+    private $id;
+
+    /**
      * @var string The customer's firstName.
      */
     private $firstName;
@@ -92,6 +97,22 @@ class CustomerDTO
         $this->phone = $phone;
     }
 
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the ID of the customer.
+     *
+     * @param string $id The id of the customer.
+     * @return void
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
     /**
      * Get the customer firstName.
      *
@@ -100,6 +121,17 @@ class CustomerDTO
     public function getFirstName(): ?string
     {
         return $this->firstName;
+    }
+
+    /**
+     * Set the firstName of the customer.
+     *
+     * @param string $firstName The firstName of the customer.
+     * @return void
+     */
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
     }
 
     /**
@@ -113,6 +145,17 @@ class CustomerDTO
     }
 
     /**
+     * Set the lastName of the customer.
+     *
+     * @param string $lastName The lastName of the customer.
+     * @return void
+     */
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
+    }
+
+    /**
      * Get the customer email.
      *
      * @return string|null
@@ -120,6 +163,17 @@ class CustomerDTO
     public function getEmail(): ?string
     {
         return $this->email;
+    }
+
+    /**
+     * Set the email of the customer.
+     *
+     * @param string $email The email of the customer.
+     * @return void
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
     }
 
     /**

@@ -12,6 +12,16 @@ use Mockery;
 
 class CustomerImportTest extends TestCase
 {
+
+    private $customerService;
+
+    protected function setUp(): void
+    {
+        $app = $this->createApplication();
+        $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+        $this->customerService = Mockery::mock(CustomerService::class);
+    }
+
     public function test_can_fetch_users_from_api_and_map_to_customer_entity()
     {
         $response = [
@@ -59,12 +69,11 @@ class CustomerImportTest extends TestCase
             'https://randomuser.me/*' => Http::response($response, 200)
         ]);
 
-        $customerService = Mockery::mock(CustomerService::class);
 
-        $customerService->shouldReceive('createOrUpdateCustomer')->twice()->andReturn(true);
+        $this->customerService->shouldReceive('createOrUpdateCustomer')->twice()->andReturn(true);
 
 
-        $importer = new CustomerImport($customerService);
+        $importer = new CustomerImport($this->customerService);
         $customers = $importer->fetchCustomers('AU', 2);
 
         $this->assertInstanceOf(Collection::class, $customers);

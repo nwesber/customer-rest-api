@@ -4,21 +4,29 @@ namespace Tests\Unit\Controllers;
 
 use App\Models\Customers;
 use Tests\TestCase;
+use Illuminate\Http\Response;
 
 class CustomersControllerTest extends TestCase
 {
 
     public function test_it_can_get_a_list_of_customers()
     {
-        $customers = Customers::factory()->count(10)->make();
-        $response = $this->get('/api/customers');
-        $response->assertStatus(200);
+        $this->json('get', 'api/customers')
+            ->assertStatus(Response::HTTP_OK)
+            ->assertJsonStructure([
+                'data' => [
+                    '*' => [
+                        'full_name',
+                        'email',
+                        'country'
+                    ]
+                ]
+            ]);
     }
-
     public function test_it_can_get_a_single_customer()
     {
         $customer = Customers::factory()->make();
-        $response = $this->get('/api/customers/' . $customer->id);
+        $response = $this->get('api/customers/' . $customer->id);
         $response->assertStatus(200);
     }
 
